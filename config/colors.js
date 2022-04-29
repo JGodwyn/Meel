@@ -6,5 +6,5 @@ export default {
     gray: '#E5E5E5',
     gray2: '#F2F2F2',
     gray3: '#B2B2B2',
-    orange: '#F8802D',
+    brandOrange: '#D03E09',
 };
