@@ -15,7 +15,7 @@ export default function Onboarding1({ navigation }) {
       <TouchableOpacity
         style={styles.skipText}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate('Authentication')}
+        onPress={() => navigation.navigate('CreateAccount')}
       >
         <Text style={{ fontFamily: 'Inter_700Bold' }}>Skip</Text>
       </TouchableOpacity>

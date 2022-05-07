@@ -24,7 +24,7 @@ export default function Onboarding1({ navigation }) {
       <TouchableOpacity
         style={styles.onboardingButton}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate('Authentication')}
+        onPress={() => navigation.navigate('CreateAccount')}
       >
         <Text style={{ color: colors.white }}>Get Started</Text>
       </TouchableOpacity>
