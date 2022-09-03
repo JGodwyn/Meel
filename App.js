@@ -9,6 +9,7 @@ import CreateAccount from './screens/CreateAccount';
 import Login from './screens/Login';
 import Terms from './screens/Terms';
 import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 // import all the fonts from Google Fonts
 import {
   useFonts,
@@ -75,3 +76,4 @@ export default function App() {
     );
   }
 }
+
