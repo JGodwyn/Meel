@@ -1,3 +1,4 @@
+import { useEffect, useState, useCallback } from 'react';
 import { setCustomText } from 'react-native-global-props';
 import Home from './screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,7 +9,6 @@ import Onboarding3 from './screens/Onboarding3';
 import CreateAccount from './screens/CreateAccount';
 import Login from './screens/Login';
 import Terms from './screens/Terms';
-import AppLoading from 'expo-app-loading';
 import * as SplashScreen from 'expo-splash-screen';
 // import all the fonts from Google Fonts
 import {
@@ -24,9 +24,13 @@ import {
   Inter_900Black,
 } from '@expo-google-fonts/inter';
 
+// keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
 // all these are used for navigation
 // initialize this for the stack
 const Stack = createNativeStackNavigator();
+
 // show the header or not
 const screenOptions = {
   headerShown: false,
@@ -55,9 +59,27 @@ export default function App() {
     Inter_900Black,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
+  // set the app state
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Pre-load fonts, make any API calls you need to do here
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Tell the application to render
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  if (appIsReady && fontsLoaded) {
+    // if the app is ready and fonts have loaded, hide the splash screen
+    SplashScreen.hideAsync();
     return (
       <NavigationContainer>
         <Stack.Navigator
@@ -74,6 +96,8 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     );
+  } else {
+    return null;
   }
 }
 
