@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 
   headerBold: {
     fontSize: 26,
-    fontFamily: 'Inter_700Bold',
+    fontFamily: 'jakarta-bold',
   },
 
   image: {
@@ -97,3 +97,4 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
 });
+

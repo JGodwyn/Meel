@@ -31,10 +31,10 @@ export default function Login({ navigation }) {
           defaultValue={email}
         />
 
-        <View style={[styles.textInput, { flexDirection: 'row' }]}>
+        <View style={{ flexDirection: 'row' }}>
           <TextInput
             placeholder="Password"
-            style={{ width: 296, fontFamily: 'Inter_400Regular', fontSize: 16 }}
+            style={styles.textInput}
             onChangeText={(newText) => setPassword(newText)}
             defaultValue={password}
             secureTextEntry={hidePassword}
@@ -51,6 +51,9 @@ export default function Login({ navigation }) {
               style={{
                 width: 20,
                 height: 20,
+                position: 'absolute',
+                right: 16,
+                top: -15,
               }}
             />
           </TouchableOpacity>
@@ -66,7 +69,9 @@ export default function Login({ navigation }) {
         }}
         activeOpacity={0.7}
       >
-        <Text>Forgot password?</Text>
+        <Text style={{ fontFamily: 'jakarta-bold', color: colors.brandOrange }}>
+          Forgot password?
+        </Text>
       </TouchableOpacity>
 
       <View style={{ marginTop: 40 }}>
@@ -77,7 +82,7 @@ export default function Login({ navigation }) {
         style={{
           position: 'absolute',
           bottom: 20,
-          fontFamily: 'Inter_700Bold',
+          fontFamily: 'jakarta-bold',
         }}
         onPress={() => navigation.navigate('CreateAccount')}
       >
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
 
   headerBold: {
     fontSize: 28,
-    fontFamily: 'Inter_700Bold',
+    fontFamily: 'jakarta-bold',
     marginBottom: 40,
     color: colors.darkest_brand,
   },
@@ -110,8 +115,8 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 16,
+    fontFamily: 'jakarta-regular',
+    fontSize: 14,
     padding: 10,
     marginBottom: 16,
     width: 340,
@@ -119,3 +124,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.gray2,
   },
 });
+

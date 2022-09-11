@@ -17,7 +17,7 @@ export default function Onboarding1({ navigation }) {
         activeOpacity={0.7}
         onPress={() => navigation.navigate('CreateAccount')}
       >
-        <Text style={{ fontFamily: 'Inter_700Bold' }}>Skip</Text>
+        <Text style={{ fontFamily: 'jakarta-bold' }}>Skip</Text>
       </TouchableOpacity>
 
       <Image
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 
   headerBold: {
     fontSize: 26,
-    fontFamily: 'Inter_700Bold',
+    fontFamily: 'jakarta-bold',
   },
 
   image: {
@@ -111,3 +111,4 @@ const styles = StyleSheet.create({
     right: 20,
   },
 });
+

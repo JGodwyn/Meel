@@ -41,17 +41,24 @@ export default function CreateAccount({ navigation }) {
 
         {/* checking for valid email address*/}
         {validEmailIdentifier ? (
-          <Text style={{ marginBottom: 16, fontSize: 14, color: colors.red }}>
+          <Text
+            style={{
+              marginBottom: 16,
+              marginTop: 4,
+              fontSize: 12,
+              color: colors.red,
+            }}
+          >
             Invalid email address
           </Text>
         ) : (
           <Text> </Text>
         )}
 
-        <View style={[styles.textInput, { flexDirection: 'row' }]}>
+        <View style={{ flexDirection: 'row' }}>
           <TextInput
             placeholder="Password"
-            style={{ width: 296, fontFamily: 'Inter_400Regular', fontSize: 16 }}
+            style={styles.textInput}
             onChangeText={(newText) => setPassword(newText)}
             defaultValue={password}
             secureTextEntry={hidePassword}
@@ -68,6 +75,9 @@ export default function CreateAccount({ navigation }) {
               style={{
                 width: 20,
                 height: 20,
+                position: 'absolute',
+                right: 16,
+                top: -10,
               }}
             />
           </TouchableOpacity>
@@ -75,7 +85,14 @@ export default function CreateAccount({ navigation }) {
 
         {/* checking for valid password */}
         {validPasswordIdentifier ? (
-          <Text style={{ marginBottom: 16, fontSize: 14, color: colors.red }}>
+          <Text
+            style={{
+              marginBottom: 16,
+              marginTop: 4,
+              fontSize: 12,
+              color: colors.red,
+            }}
+          >
             Passwords must be at least 8 characters long
           </Text>
         ) : (
@@ -88,21 +105,25 @@ export default function CreateAccount({ navigation }) {
           alignSelf: 'flex-start',
           paddingLeft: 36,
           flexDirection: 'row',
-          marginTop: 10,
+          marginTop: 8,
         }}
       >
         <BouncyCheckbox
           size={20}
           fillColor={colors.brandOrange}
           iconStyle={{ borderRadius: 8 }}
+          // set acceptTerms to true when you tick the checkbox
           onPress={() => {
             setacceptTerms(!acceptTerms);
           }}
         />
         <Text>
-          I accept the{' '}
+          I accept the {''}
           <Text
-            style={{ color: colors.darkest_brand, fontFamily: 'Inter_700Bold' }}
+            style={{
+              fontFamily: 'jakarta-semibold',
+              textDecorationLine: 'underline',
+            }}
             onPress={() => {
               navigation.navigate('Terms');
             }}
@@ -119,22 +140,29 @@ export default function CreateAccount({ navigation }) {
           press={() => {
             if (
               acceptTerms &&
-              password.length > 8 &&
+              password.length > 7 &&
               validator.isEmail(email)
             ) {
-              setValidEmailIdentifier(true);
-              setValidPasswordIdentifier(true);
+              setValidEmailIdentifier(false);
+              setValidPasswordIdentifier(false);
               navigation.navigate('Home');
-            } else {
-              if (!acceptTerms) {
-                alert('Accept terms and conditions to continue');
-              }
-              !validator.isEmail(email)
-                ? setValidEmailIdentifier(true)
-                : setValidEmailIdentifier(false);
-              password.length < 8
-                ? setValidPasswordIdentifier(true)
-                : setValidPasswordIdentifier(false);
+            }
+
+            validator.isEmail(email)
+              ? setValidEmailIdentifier(false)
+              : setValidEmailIdentifier(true);
+
+            password.length > 7
+              ? setValidPasswordIdentifier(false)
+              : setValidPasswordIdentifier(true);
+
+            // Display error message only if password and email has been validated
+            if (
+              (acceptTerms === false) &
+              (validEmailIdentifier === false) &
+              (validPasswordIdentifier === false)
+            ) {
+              alert('Accept terms and conditions to continue');
             }
           }}
           width={340}
@@ -143,9 +171,9 @@ export default function CreateAccount({ navigation }) {
 
       <Text
         style={{
-          position: 'absolute',
-          bottom: 20,
-          fontFamily: 'Inter_700Bold',
+          position: 'relative',
+          fontFamily: 'jakarta-bold',
+          marginTop: 20,
         }}
         onPress={() => {
           setValidEmailIdentifier(false);
@@ -169,7 +197,7 @@ const styles = StyleSheet.create({
 
   headerBold: {
     fontSize: 28,
-    fontFamily: 'Inter_700Bold',
+    fontFamily: 'jakarta-bold',
     marginBottom: 40,
     color: colors.darkest_brand,
   },
@@ -182,8 +210,8 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 16,
+    fontFamily: 'jakarta-regular',
+    fontSize: 14,
     padding: 10,
     marginBottom: 2,
     width: 340,
@@ -191,3 +219,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.gray2,
   },
 });
+

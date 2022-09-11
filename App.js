@@ -11,18 +11,7 @@ import Login from './screens/Login';
 import Terms from './screens/Terms';
 import * as SplashScreen from 'expo-splash-screen';
 // import all the fonts from Google Fonts
-import {
-  useFonts,
-  Inter_100Thin,
-  Inter_200ExtraLight,
-  Inter_300Light,
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-  Inter_800ExtraBold,
-  Inter_900Black,
-} from '@expo-google-fonts/inter';
+import { useFonts } from 'expo-font';
 
 // keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -38,8 +27,8 @@ const screenOptions = {
 
 const customTextProps = {
   style: {
-    fontSize: 16,
-    fontFamily: 'Inter_500Medium',
+    fontSize: 14,
+    fontFamily: 'jakarta-regular',
     color: 'black',
   },
 };
@@ -47,16 +36,10 @@ const customTextProps = {
 setCustomText(customTextProps);
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    Inter_100Thin,
-    Inter_200ExtraLight,
-    Inter_300Light,
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-    Inter_800ExtraBold,
-    Inter_900Black,
+  const [fontsLoaded] = useFonts({
+    'jakarta-regular': require('./assets/fonts/PlusJakartaSans-Regular.ttf'),
+    'jakarta-bold': require('./assets/fonts/PlusJakartaSans-Bold.ttf'),
+    'jakarta-semibold': require('./assets/fonts/PlusJakartaSans-SemiBold.ttf'),
   });
 
   // set the app state

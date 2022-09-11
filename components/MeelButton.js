@@ -12,18 +12,24 @@ export default function MeelButton({ text, press, position, bottom, width }) {
       activeOpacity={0.7}
       onPress={press}
     >
-      <Text style={{ color: colors.white }}>{text} </Text>
+      <Text style={styles.label}>{text} </Text>
     </TouchableOpacity>
   );
 }
 const styles = StyleSheet.create({
   onboardingButton: {
     position: 'absolute',
-    height: 64,
+    height: 56,
     padding: 10,
     backgroundColor: colors.brandOrange,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 16,
   },
+
+  label: {
+    fontFamily: 'jakarta-bold',
+    color: colors.white,
+  },
 });
+
