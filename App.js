@@ -9,6 +9,7 @@ import Onboarding3 from './screens/Onboarding3';
 import CreateAccount from './screens/CreateAccount';
 import Login from './screens/Login';
 import Terms from './screens/Terms';
+import Notifications from './screens/Notifications';
 import * as SplashScreen from 'expo-splash-screen';
 // import all the fonts from Google Fonts
 import { useFonts } from 'expo-font';
@@ -25,11 +26,14 @@ const screenOptions = {
   headerShown: false,
 };
 
+// this works as your default font
+// you can override this in your
 const customTextProps = {
   style: {
     fontSize: 14,
     fontFamily: 'jakarta-regular',
     color: 'black',
+    lineHeight: 24,
   },
 };
 
@@ -69,6 +73,7 @@ export default function App() {
           initialRouteName="Onboarding1"
           screenOptions={screenOptions}
         >
+          <Stack.Screen name="Notifications" component={Notifications} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Onboarding1" component={Onboarding1} />
           <Stack.Screen name="Onboarding2" component={Onboarding2} />

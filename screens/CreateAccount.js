@@ -11,6 +11,7 @@ import colors from '../config/colors';
 import MeelButton from '../components/MeelButton';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import validator from 'validator';
+import Font from '../components/Font';
 
 export default function CreateAccount({ navigation }) {
   const [hidePassword, setHidePassword] = React.useState(true);
@@ -27,7 +28,7 @@ export default function CreateAccount({ navigation }) {
         source={require('../assets/icons/Meel_full_icon.png')}
         style={styles.iconImage}
       />
-      <Text style={styles.headerBold}>Open account</Text>
+      <Font size="H3" text="Open account" color={colors.darkest_brand} />
       <View>
         <TextInput
           placeholder="Email address"

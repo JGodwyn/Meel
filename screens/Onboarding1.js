@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import colors from '../config/colors';
+import Font from '../components/Font';
 
 export default function Onboarding1({ navigation }) {
   return (
@@ -23,6 +24,7 @@ export default function Onboarding1({ navigation }) {
         source={require('../assets/Images/Onboarding/Quick_Illustration.png')}
         style={styles.image}
       />
+
       <Text style={styles.headerBold}>Quick</Text>
       <Text style={styles.paragraph}>
         Get immediate suggestions on the best meals to take
@@ -70,6 +72,7 @@ const styles = StyleSheet.create({
   headerBold: {
     fontSize: 26,
     fontFamily: 'jakarta-bold',
+    lineHeight: 34,
   },
 
   image: {
