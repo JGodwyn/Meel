@@ -1,0 +1,2 @@
+The first 4 screens are for first time users.
+Subsequent screens are for users who have asked for a suggestion before

@@ -1,8 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
-import { setCustomText } from 'react-native-global-props';
 import Home from './screens/Home';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Onboarding1 from './screens/Onboarding1';
 import Onboarding2 from './screens/Onboarding2';
 import Onboarding3 from './screens/Onboarding3';
@@ -10,8 +6,17 @@ import CreateAccount from './screens/CreateAccount';
 import Login from './screens/Login';
 import Terms from './screens/Terms';
 import Notifications from './screens/Notifications';
+import Greeting from './screens/SuggestAMeal/Greeting';
+import CollectAge from './screens/SuggestAMeal/CollectAge';
+import CollectLocation from './screens/SuggestAMeal/CollectLocation';
+import CollectCategories from './screens/SuggestAMeal/CollectCategories';
+import MainScreen from './screens/SuggestAMeal/MainScreen';
+
+import { useEffect, useState } from 'react';
+import { setCustomText } from 'react-native-global-props';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
-// import all the fonts from Google Fonts
 import { useFonts } from 'expo-font';
 
 // keep the splash screen visible while we fetch resources
@@ -27,7 +32,7 @@ const screenOptions = {
 };
 
 // this works as your default font
-// you can override this in your
+// you can override this in your Font component
 const customTextProps = {
   style: {
     fontSize: 14,
@@ -81,6 +86,14 @@ export default function App() {
           <Stack.Screen name="CreateAccount" component={CreateAccount} />
           <Stack.Screen name="Terms" component={Terms} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Greeting" component={Greeting} />
+          <Stack.Screen name="CollectAge" component={CollectAge} />
+          <Stack.Screen name="CollectLocation" component={CollectLocation} />
+          <Stack.Screen
+            name="CollectCategories"
+            component={CollectCategories}
+          />
+          <Stack.Screen name="MainScreen" component={MainScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

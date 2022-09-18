@@ -2,9 +2,13 @@ import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import colors from '../config/colors';
 
-export default function MeelAction() {
+export default function MeelAction({ press }) {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.5}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={0.5}
+      onPress={press}
+    >
       <Image
         style={styles.icon}
         source={require('../assets/icons/MeelActionIcon.png')}

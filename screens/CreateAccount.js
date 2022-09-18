@@ -24,166 +24,172 @@ export default function CreateAccount({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../assets/icons/Meel_full_icon.png')}
-        style={styles.iconImage}
-      />
-      <Font size="H3" text="Open account" color={colors.darkest_brand} />
-      <View>
-        <TextInput
-          placeholder="Email address"
-          style={styles.textInput}
-          keyboardType="email-address"
-          onChangeText={(newText) => {
-            setEmail(newText);
-          }}
-          defaultValue={email}
+      <View style={styles.subContainer}>
+        <Image
+          source={require('../assets/icons/Meel_full_icon.png')}
+          style={styles.iconImage}
         />
-
-        {/* checking for valid email address*/}
-        {validEmailIdentifier ? (
-          <Text
-            style={{
-              marginBottom: 16,
-              marginTop: 4,
-              fontSize: 12,
-              color: colors.red,
-            }}
-          >
-            Invalid email address
-          </Text>
-        ) : (
-          <Text> </Text>
-        )}
-
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ alignSelf: 'center' }}>
+          <Font size="H3" text="Open account" color={colors.darkest_brand} />
+        </View>
+        <View>
           <TextInput
-            placeholder="Password"
+            placeholder="Email address"
             style={styles.textInput}
-            onChangeText={(newText) => setPassword(newText)}
-            defaultValue={password}
-            secureTextEntry={hidePassword}
+            keyboardType="email-address"
+            onChangeText={(newText) => {
+              setEmail(newText);
+            }}
+            defaultValue={email}
           />
 
-          <TouchableOpacity
-            style={{ alignSelf: 'center' }}
-            onPress={() => {
-              setHidePassword(!hidePassword);
-            }}
-          >
-            <Image
-              source={require('../assets/icons/Show.png')}
+          {/* checking for valid email address*/}
+          {validEmailIdentifier ? (
+            <Text
               style={{
-                width: 20,
-                height: 20,
-                position: 'absolute',
-                right: 16,
-                top: -10,
+                marginBottom: 16,
+                marginTop: 4,
+                fontSize: 12,
+                color: colors.red,
               }}
+            >
+              Invalid email address
+            </Text>
+          ) : (
+            <Text> </Text>
+          )}
+
+          <View style={{ flexDirection: 'row' }}>
+            <TextInput
+              placeholder="Password"
+              style={styles.textInput}
+              onChangeText={(newText) => setPassword(newText)}
+              defaultValue={password}
+              secureTextEntry={hidePassword}
             />
-          </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{ alignSelf: 'center' }}
+              onPress={() => {
+                setHidePassword(!hidePassword);
+              }}
+            >
+              <Image
+                source={require('../assets/icons/Show.png')}
+                style={{
+                  width: 20,
+                  height: 20,
+                  position: 'absolute',
+                  right: 16,
+                  top: -10,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* checking for valid password */}
+          {validPasswordIdentifier ? (
+            <Text
+              style={{
+                marginBottom: 16,
+                marginTop: 4,
+                fontSize: 12,
+                color: colors.red,
+              }}
+            >
+              Passwords must be at least 8 characters long
+            </Text>
+          ) : (
+            <Text> </Text>
+          )}
         </View>
 
-        {/* checking for valid password */}
-        {validPasswordIdentifier ? (
-          <Text
-            style={{
-              marginBottom: 16,
-              marginTop: 4,
-              fontSize: 12,
-              color: colors.red,
-            }}
-          >
-            Passwords must be at least 8 characters long
-          </Text>
-        ) : (
-          <Text> </Text>
-        )}
-      </View>
-
-      <View
-        style={{
-          alignSelf: 'flex-start',
-          paddingLeft: 36,
-          flexDirection: 'row',
-          marginTop: 8,
-        }}
-      >
-        <BouncyCheckbox
-          size={20}
-          fillColor={colors.brandOrange}
-          iconStyle={{ borderRadius: 8 }}
-          // set acceptTerms to true when you tick the checkbox
-          onPress={() => {
-            setacceptTerms(!acceptTerms);
+        <View
+          style={{
+            alignSelf: 'flex-start',
+            // paddingLeft: 36,
+            flexDirection: 'row',
+            marginTop: 8,
           }}
-        />
-        <Text>
-          I accept the {''}
-          <Text
-            style={{
-              fontFamily: 'jakarta-semibold',
-              textDecorationLine: 'underline',
-            }}
+        >
+          <BouncyCheckbox
+            size={20}
+            fillColor={colors.brandOrange}
+            iconStyle={{ borderRadius: 8 }}
+            // set acceptTerms to true when you tick the checkbox
             onPress={() => {
-              navigation.navigate('Terms');
+              setacceptTerms(!acceptTerms);
             }}
-          >
-            Terms and conditions
+          />
+          <Text>
+            I accept the {''}
+            <Text
+              style={{
+                fontFamily: 'jakarta-semibold',
+                textDecorationLine: 'underline',
+              }}
+              onPress={() => {
+                navigation.navigate('Terms');
+              }}
+            >
+              Terms and conditions
+            </Text>
           </Text>
+        </View>
+
+        <View style={{ marginTop: 40 }}>
+          {/* create account button */}
+          <MeelButton
+            text="Create account"
+            size="Medium"
+            color="Brand"
+            press={() => {
+              if (
+                acceptTerms &&
+                password.length > 7 &&
+                validator.isEmail(email)
+              ) {
+                setValidEmailIdentifier(false);
+                setValidPasswordIdentifier(false);
+                navigation.navigate('Home');
+              }
+
+              validator.isEmail(email)
+                ? setValidEmailIdentifier(false)
+                : setValidEmailIdentifier(true);
+
+              password.length > 7
+                ? setValidPasswordIdentifier(false)
+                : setValidPasswordIdentifier(true);
+
+              // Display alert message only if password and email has been validated
+              if (
+                (acceptTerms === false) &
+                (validEmailIdentifier === false) &
+                (validPasswordIdentifier === false)
+              ) {
+                alert('Accept terms and conditions to continue');
+              }
+            }}
+            width={340}
+          />
+        </View>
+
+        <Text
+          style={{
+            fontFamily: 'jakarta-bold',
+            marginTop: 20,
+            alignSelf: 'center',
+          }}
+          onPress={() => {
+            setValidEmailIdentifier(false);
+            setValidPasswordIdentifier(false);
+            navigation.navigate('Login');
+          }}
+        >
+          Already have a account, log in
         </Text>
       </View>
-
-      <View style={{ marginTop: 40 }}>
-        {/* create account button */}
-        <MeelButton
-          text="Create account"
-          press={() => {
-            if (
-              acceptTerms &&
-              password.length > 7 &&
-              validator.isEmail(email)
-            ) {
-              setValidEmailIdentifier(false);
-              setValidPasswordIdentifier(false);
-              navigation.navigate('Home');
-            }
-
-            validator.isEmail(email)
-              ? setValidEmailIdentifier(false)
-              : setValidEmailIdentifier(true);
-
-            password.length > 7
-              ? setValidPasswordIdentifier(false)
-              : setValidPasswordIdentifier(true);
-
-            // Display error message only if password and email has been validated
-            if (
-              (acceptTerms === false) &
-              (validEmailIdentifier === false) &
-              (validPasswordIdentifier === false)
-            ) {
-              alert('Accept terms and conditions to continue');
-            }
-          }}
-          width={340}
-        />
-      </View>
-
-      <Text
-        style={{
-          position: 'relative',
-          fontFamily: 'jakarta-bold',
-          marginTop: 20,
-        }}
-        onPress={() => {
-          setValidEmailIdentifier(false);
-          setValidPasswordIdentifier(false);
-          navigation.navigate('Login');
-        }}
-      >
-        Already have a account, log in
-      </Text>
     </View>
   );
 }
@@ -191,9 +197,15 @@ export default function CreateAccount({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  subContainer: {
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    backgroundColor: colors.white,
   },
 
   headerBold: {
@@ -206,7 +218,7 @@ const styles = StyleSheet.create({
   iconImage: {
     width: 80,
     height: 80,
-    justifyContent: 'center',
+    alignSelf: 'center',
     resizeMode: 'contain',
   },
 

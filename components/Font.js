@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import colors from '../config/colors';
 import React from 'react';
 
-export default function Font({ size, text, color }) {
+export default function Font({ size, text, color, justifyCenter = false }) {
   // I have a default font style on the app.js (the body)
   // so no need to add the logic for a doctor
   // when no type is specified, it would use that
@@ -11,37 +11,108 @@ export default function Font({ size, text, color }) {
   // conditional statement. You can set the one most likely to be used
   // on the top so you avoid going through all the calls before getting there
   // return after you have gotten each call
+
   {
     if (size === 'Caption')
-      return <Text style={[styles.Caption, { color: color }]}>{text}</Text>;
+      return (
+        <Text
+          style={[
+            styles.Caption,
+            { color: color },
+            { textAlign: justifyCenter ? 'center' : 'left' },
+          ]}
+        >
+          {text}
+        </Text>
+      );
   }
 
   {
     if (size === 'H5')
-      return <Text style={[styles.H5, { color: color }]}>{text}</Text>;
+      return (
+        <Text
+          style={[
+            styles.H5,
+            { color: color },
+            { textAlign: justifyCenter ? 'center' : 'left' },
+          ]}
+        >
+          {text}
+        </Text>
+      );
   }
 
   {
     if (size === 'H4')
-      return <Text style={[styles.H4, { color: color }]}>{text}</Text>;
+      return (
+        <Text
+          style={[
+            styles.H4,
+            { color: color },
+            { textAlign: justifyCenter ? 'center' : 'left' },
+          ]}
+        >
+          {text}
+        </Text>
+      );
   }
 
   {
     if (size === 'H3')
-      return <Text style={[styles.H3, { color: color }]}>{text}</Text>;
+      return (
+        <Text
+          style={[
+            styles.H3,
+            { color: color },
+            { textAlign: justifyCenter ? 'center' : 'left' },
+          ]}
+        >
+          {text}
+        </Text>
+      );
   }
 
   {
     if (size === 'H2')
-      return <Text style={[styles.H3, { color: color }]}>{text}</Text>;
+      return (
+        <Text
+          style={[
+            styles.H3,
+            { color: color },
+            { textAlign: justifyCenter ? 'center' : 'left' },
+          ]}
+        >
+          {text}
+        </Text>
+      );
   }
 
   {
     if (size === 'H1')
-      return <Text style={[styles.H3, { color: color }]}>{text}</Text>;
+      return (
+        <Text
+          style={[
+            styles.H3,
+            { color: color },
+            { textAlign: justifyCenter ? 'center' : 'left' },
+          ]}
+        >
+          {text}
+        </Text>
+      );
   }
 
-  return <Text style={[styles.Body, { color: color }]}>{text}</Text>;
+  return (
+    <Text
+      style={[
+        styles.Body,
+        { color: color },
+        { textAlign: justifyCenter ? 'center' : 'left' },
+      ]}
+    >
+      {text}
+    </Text>
+  );
 }
 
 const styles = StyleSheet.create({

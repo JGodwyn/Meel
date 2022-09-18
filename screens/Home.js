@@ -77,7 +77,8 @@ export default function Home({ navigation }) {
           />
         </ScrollView>
       </View>
-      <MeelAction />
+      {/* this should be receiving a prop to check whether it is a first time user or not */}
+      <MeelAction press={() => navigation.navigate('Greeting')} />
       <TabBar home={true} />
     </SafeAreaView>
   );

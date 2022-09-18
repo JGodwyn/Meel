@@ -13,7 +13,7 @@ export default function NavBar({
       {leftIcon ? (
         <TouchableOpacity onPress={pressBack}>
           <Image
-            source={require('../assets/icons/back_arrow.png/')}
+            source={require('../assets/icons/back_arrow.png')}
             style={styles.iconLeft}
           />
         </TouchableOpacity>
