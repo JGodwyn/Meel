@@ -5,6 +5,7 @@ import {
   TextInput,
   Image,
   PermissionsAndroid,
+  Platform,
 } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -63,8 +64,9 @@ export default function CollectLocation({ navigation }) {
           <MeelButton
             text="Give access to location"
             press={() => {
-              console.log(granted);
-              permissionAllowed ? navigation.navigate('CollectCategories') : '';
+              permissionAllowed & (Platform.OS === 'android')
+                ? navigation.navigate('CollectCategories')
+                : navigation.navigate('CollectCategories');
               requestLocationPermission();
             }}
           />

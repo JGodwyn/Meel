@@ -75,7 +75,7 @@ export default function App() {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Onboarding1"
+          initialRouteName="CollectCategories"
           screenOptions={screenOptions}
         >
           <Stack.Screen name="Notifications" component={Notifications} />
